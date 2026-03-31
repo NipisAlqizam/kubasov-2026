@@ -35,5 +35,5 @@ function dmatrix_new = dmatrix_rotate (dmatrix, A)
   A_T(6,6) = A_inv(1,1)*A_inv(2,2) + A_inv(1,2)*A_inv(2,1);
 
   % коэффциенты матрицы d в повернутой СК
-  dmatix_new = A*dmatrix*A_T;
+  dmatrix_new = A*dmatrix*A_T;
 endfunction
