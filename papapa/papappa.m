@@ -53,9 +53,14 @@ for i=1:length(theta)
     % d33(i,j) = d_tensor_new(3,3,3);
 
     % оптимизированный вариант через матричные умножения
-    d_tensor_new = d_tensor_rotate_fast(d_tensor, rot_matrix);
+    %d_tensor_new = d_tensor_rotate_fast(d_tensor, rot_matrix);
 
-    d33(i, j) = d_tensor_new(3,3,3);
+    %d33(i, j) = d_tensor_new(3,3,3);
+
+    % оптимизированный вариант без перехода к тензору
+    d_matrix_new = dmatrix_rotate(d_matrix, rot_matrix);
+    d33(i,j) = d_matrix_new(3,3);
+
   end
 end
 toc
