@@ -51,8 +51,8 @@ s_E_matrix_new = stensor2matrix(s_E_tensor_new);
 
 %из трех продольных ПЭ коэф выбираем d33
 
-theta = 0:15:360; %поворот вокруг x3
-phi = 0: 15: 180; %потворот вокруг x2'
+theta = 0:2:360; %поворот вокруг x3
+phi = 0: 2: 180; %потворот вокруг x2'
 
 
 
@@ -65,9 +65,9 @@ for i=1:length(theta)
     rot_matrix=roty(phi(j))'*rotz(theta(i))';
     % самый неоптимальный вариант
     % считаем всю матрицу на каждой итерации, каждый коэффициент из 27
-     s_E_tensor_new=s_tensor_rotate(s_E_tensor, rot_matrix);
+    % s_E_tensor_new=s_tensor_rotate(s_E_tensor, rot_matrix);
 
-    s_E_33(i,j)=s_E_tensor_new(3,3,3,3);
+    % s_E_33(i,j)=s_E_tensor_new(3,3,3,3);
 
 
     % 1 оптимизация
@@ -80,8 +80,8 @@ for i=1:length(theta)
     %d33(i, j) = d_tensor_new(3,3,3);
 
     % оптимизированный вариант без перехода к тензору
-    %d_matrix_new = dmatrix_rotate(d_matrix, rot_matrix);
-    %d33(i,j) = d_matrix_new(3,3);
+    s_E_matrix_new = smatrix_rotate(s_E_matrix, rot_matrix);
+    s_E_33(i,j) = s_E_matrix_new(3,3);
 
   end
 end
