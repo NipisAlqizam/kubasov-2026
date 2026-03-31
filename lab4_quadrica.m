@@ -1,8 +1,9 @@
 clear;
+% построение квадрики
 % Создадим симметричный тензор 2 ранга (матрица 3 на 3)
-S = [10  0   0;
-     0  15   0;
-     0  0   20];
+S = [10  5   7;
+     5  15   6;
+     7  6   -20];
 
 % сканируем по всему телесному углу,
 % достаточно двух поворотов для того,
@@ -43,10 +44,25 @@ end
 
 % транспонируем sigma, чтобы соответствовать размерности PHI и THETA
 sigma = sigma';
+r = sqrt(1./sigma);
+
+rmax=1;
+
+for i=1:size(r, 1)
+  for j=1:size(r,2)
+    if abs(r(i,j)) > rmax
+      r(i,j) = rmax;
+    end
+    if isreal(r(i,j))==0
+      r(i,j) = NaN;
+    end
+  end
+end
 
 % перейдём к декартовой прямоугольной СК
 % abs(sigma) на случай если радиус-вектор отрицателен
-[X, Y, Z] = sph2cart(THETA, -(PHI-pi/2), abs(sigma));
+[X, Y, Z] = sph2cart(THETA, -(PHI-pi/2), abs(r));
+
 
 figure
 surf(X, Y, Z, sigma);
