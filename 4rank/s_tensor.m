@@ -113,4 +113,15 @@ ylim ([0  180]);
 xlim ([0  360]);
 colorbar;
 
+figure
+surf(rad2deg(THETA),rad2deg(PHI),Y_33);
+[X, Y, Z] = sph2cart(THETA, -(PHI-pi/2), abs(Y_33));
+daspect([1 1 1]);
+shading interp;       % сглаживаем цвета
 
+
+%повернем камеру
+view ([0  90]);
+ylim ([0  180]);
+xlim ([0  360]);
+colorbar;
