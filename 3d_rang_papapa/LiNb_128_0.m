@@ -48,7 +48,7 @@ d23_128_pos(d23_128 >= 0) = d23_128(d23_128 >= 0);
 d23_128_neg(d23_128 < 0) = abs(d23_128(d23_128 < 0));
 
 figure
-polar(deg2rad(phi), d23_128_pos, '-g'); % не работает
+polar(deg2rad(phi), d23_128_pos, '-g');
 hold on;
 polar(deg2rad(phi), d23_128_neg, '--r');
 grid on
